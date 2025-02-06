@@ -5,12 +5,10 @@ import socket
 app = Flask(__name__)
 CORS(app) 
 
-@app.route('/get_ip', methods=['GET'])
-def get_ip():
-    try:
-        hostname = socket.gethostname()
-        ip_address = socket.gethostbyname(hostname)
-        return jsonify({"hostname": hostname, "ip_address": ip_address})
+@app.route('/visitor_ip', methods=['GET'])
+def visitor_ip():
+    visitor_ip = request.remote_addr
+    return jsonify({"visitor_ip": visitor_ip})
     except Exception as e:
         return jsonify({"error": str(e)})
 
