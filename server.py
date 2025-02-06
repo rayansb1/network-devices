@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 import socket
 
@@ -7,8 +7,9 @@ CORS(app)
 
 @app.route('/visitor_ip', methods=['GET'])
 def visitor_ip():
-    visitor_ip = request.remote_addr
-    return jsonify({"visitor_ip": visitor_ip})
+    try:
+        visitor_ip = request.remote_addr
+        return jsonify({"visitor_ip": visitor_ip})
     except Exception as e:
         return jsonify({"error": str(e)})
 
