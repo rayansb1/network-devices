@@ -1,13 +1,14 @@
 from flask import Flask, jsonify
-import subprocess
+import socket
 
 app = Flask(__name__)
 
-@app.route('/run_arp', methods=['GET'])
-def run_arp():
+@app.route('/get_ip', methods=['GET'])
+def get_ip():
     try:
-        result = subprocess.run(['netstat', '-ant'], capture_output=True, text=True)
-        return jsonify({"output": result.stdout})
+        hostname = socket.gethostname()
+        ip_address = socket.gethostbyname(hostname)
+        return jsonify({"hostname": hostname, "ip_address": ip_address})
     except Exception as e:
         return jsonify({"error": str(e)})
 
