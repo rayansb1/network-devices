@@ -1,0 +1,6 @@
+aiopylgtv==0.4.1
+asyncio==3.4.3
+numpy==2.2.2
+sqlitedict==2.1.0
+wakeonlan==3.1.0
+websockets==14.2
